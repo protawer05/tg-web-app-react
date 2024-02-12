@@ -10,6 +10,7 @@ function App() {
 	}
 	return (
 		<div className='App'>
+			<div>Artem lox</div>
 			<button onClick={onClose}>Закрыть</button>
 		</div>
 	)
