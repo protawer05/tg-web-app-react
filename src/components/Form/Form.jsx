@@ -1,7 +1,7 @@
 import React from 'react'
 import './Form.css'
 import { useTelegram } from '../../hooks/useTelegram'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 const Form = () => {
 	const [country, setCountry] = useState('')
 	const [street, setStreet] = useState('')
