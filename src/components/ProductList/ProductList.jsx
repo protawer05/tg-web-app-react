@@ -16,7 +16,7 @@ const getTotalPrice = items => {
 	}, 0)
 }
 
-const ProductList = ({ products }) => {
+const ProductList = () => {
 	const [addedItems, setAddedItems] = useState([])
 	const { tg } = useTelegram()
 	const onAdd = product => {
