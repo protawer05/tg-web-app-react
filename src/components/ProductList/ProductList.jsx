@@ -21,6 +21,7 @@ const ProductList = () => {
 	const { tg, queryId } = useTelegram()
 
 	const onSendData = useCallback(() => {
+		console.log(addedItems)
 		const data = {
 			products: addedItems,
 			totalPrice: getTotalPrice(addedItems),
@@ -33,7 +34,7 @@ const ProductList = () => {
 			},
 			body: JSON.stringify(data),
 		})
-	}, [])
+	}, [addedItems])
 
 	useEffect(() => {
 		tg.onEvent('mainButtonClicked', onSendData)
