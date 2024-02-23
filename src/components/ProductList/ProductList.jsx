@@ -3,9 +3,9 @@ import './ProductList.css'
 import ProductItem from '../ProductItem/ProductItem'
 import { useTelegram } from '../../hooks/useTelegram'
 const products = [
-	{ id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые' },
-	{ id: '2', title: 'Джинсы2', price: 50000, description: 'Синего цвета, прямые' },
-	{ id: '3', title: 'Джинсы3', price: 50000, description: 'Синего цвета, прямые' },
+	{ id: '1', title: 'Штаны', price: 5000, description: 'Синего цвета, прямые' },
+	{ id: '2', title: 'Трико', price: 50000, description: 'Синего цвета, прямые' },
+	{ id: '3', title: 'Кроссовки', price: 50000, description: 'Синего цвета, прямые' },
 	{ id: '4', title: 'Джинсы4', price: 500000, description: 'Синего цвета(нет), прямые' },
 	{ id: '5', title: 'Джинсы5', price: 5000000, description: 'Синего цвета, прямые' },
 ]
@@ -58,7 +58,7 @@ const ProductList = () => {
 		} else {
 			tg.MainButton.show()
 			tg.MainButton.setParams({
-				text: `Купить ${getTotalPrice(newItems)}`,
+				text: `Купить ${getTotalPrice(newItems)}$`,
 			})
 		}
 	}
