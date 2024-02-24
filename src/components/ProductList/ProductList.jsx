@@ -3,7 +3,13 @@ import './ProductList.css'
 import ProductItem from '../ProductItem/ProductItem'
 import { useTelegram } from '../../hooks/useTelegram'
 const products = [
-	{ id: '1', title: 'Штаны', price: 5000, description: 'Синего цвета, прямые' },
+	{
+		id: '1',
+		title: 'Штаны',
+		price: 5000,
+		description: 'Синего цвета, прямые',
+		imageUrl: 'https://trial-sport.ru/images/catalog/miv9214_8541_c3h_0_2865452.jpg',
+	},
 	{ id: '2', title: 'Трико', price: 50000, description: 'Синего цвета, прямые' },
 	{ id: '3', title: 'Кроссовки', price: 50000, description: 'Синего цвета, прямые' },
 	{ id: '4', title: 'Джинсы4', price: 500000, description: 'Синего цвета(нет), прямые' },
