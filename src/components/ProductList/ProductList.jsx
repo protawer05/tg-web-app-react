@@ -54,10 +54,7 @@ const ProductList = () => {
 			totalPrice: getTotalPrice(addedItems),
 			queryId,
 		}
-		axios.post(
-			'https://fly-deciding-ray.ngrok-free.app/web-data',
-			JSON.stringify(data)
-		)
+		axios.post('https://fly-deciding-ray.ngrok-free.app/web-data', data)
 		// axios.post('http://localhost:8000/web-data', JSON.stringify(data))
 		// fetch('http://localhost:8000/web-data', {
 		// fetch('fly-deciding-ray.ngrok-free.app/web-data', {
