@@ -55,7 +55,10 @@ const ProductList = () => {
 			queryId,
 		}
 		console.log(data)
-		axios.post('fly-deciding-ray.ngrok-free.app/web-data', JSON.stringify(data))
+		axios.post(
+			'http://fly-deciding-ray.ngrok-free.app/web-data',
+			JSON.stringify(data)
+		)
 		// fetch('http://localhost:8000/web-data', {
 		// fetch('fly-deciding-ray.ngrok-free.app/web-data', {
 		// 	method: 'POST',
