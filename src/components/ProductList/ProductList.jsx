@@ -48,13 +48,14 @@ const ProductList = () => {
 	const { tg, queryId } = useTelegram()
 
 	const onSendData = useCallback(() => {
-		console.log(addedItems)
 		const data = {
 			products: addedItems,
 			totalPrice: getTotalPrice(addedItems),
 			queryId,
 		}
-		fetch('http://localhost:8000/web-data', {
+		console.log(data)
+		// fetch('http://localhost:8000/web-data', {
+		fetch('fly-deciding-ray.ngrok-free.app/web-data', {
 			method: 'POST',
 			headers: {
 				'Content-type': 'application/json',
@@ -78,7 +79,6 @@ const ProductList = () => {
 		} else {
 			newItems = [...addedItems, product]
 		}
-
 		setAddedItems(newItems)
 		if (newItems.length === 0) {
 			tg.MainButton.hide()
