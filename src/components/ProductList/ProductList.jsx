@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTelegram } from '../../hooks/useTelegram'
 import ProductItem from '../ProductItem/ProductItem'
@@ -54,14 +55,15 @@ const ProductList = () => {
 			queryId,
 		}
 		console.log(data)
+		axios.post('fly-deciding-ray.ngrok-free.app/web-data', JSON.stringify(data))
 		// fetch('http://localhost:8000/web-data', {
-		fetch('fly-deciding-ray.ngrok-free.app/web-data', {
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		})
+		// fetch('fly-deciding-ray.ngrok-free.app/web-data', {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-type': 'application/json',
+		// 	},
+		// 	body: JSON.stringify(data),
+		// })
 	}, [addedItems])
 
 	useEffect(() => {
