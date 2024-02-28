@@ -1,42 +1,7 @@
 import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTelegram } from '../../hooks/useTelegram'
-import ProductItem from '../ProductItem/ProductItem'
 import './ProductList.css'
-const products = [
-	{
-		id: '1',
-		title: 'Штаны',
-		price: 5000,
-		description: 'Синего цвета, прямые',
-		imageUrl:
-			'https://trial-sport.ru/images/catalog/miv9214_8541_c3h_0_2865452.jpg',
-	},
-	{
-		id: '2',
-		title: 'Трико',
-		price: 50000,
-		description: 'Синего цвета, прямые',
-	},
-	{
-		id: '3',
-		title: 'Кроссовки',
-		price: 50000,
-		description: 'Синего цвета, прямые',
-	},
-	{
-		id: '4',
-		title: 'Джинсы4',
-		price: 500000,
-		description: 'Синего цвета(нет), прямые',
-	},
-	{
-		id: '5',
-		title: 'Джинсы5',
-		price: 5000000,
-		description: 'Синего цвета, прямые',
-	},
-]
 
 const getTotalPrice = items => {
 	return items.reduce((acc, item) => {
@@ -45,25 +10,22 @@ const getTotalPrice = items => {
 }
 
 const ProductList = () => {
+	const [products, setProducts] = useState([])
 	const [addedItems, setAddedItems] = useState([])
 	const { tg, queryId } = useTelegram()
+	useEffect(async () => {
+		const { data } = await axios.get('http://localhost:8000/products')
+		setProducts(data)
+	}, [])
 
-	const onSendData = useCallback(() => {
+	const onSendData = useCallback(async () => {
 		const data = {
 			products: addedItems,
 			totalPrice: getTotalPrice(addedItems),
 			queryId,
 		}
-		axios.post('https://fly-deciding-ray.ngrok-free.app/web-data', data)
-		// axios.post('http://localhost:8000/web-data', JSON.stringify(data))
-		// fetch('http://localhost:8000/web-data', {
-		// fetch('fly-deciding-ray.ngrok-free.app/web-data', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify(data),
-		// })
+		// axios.post('https://fly-deciding-ray.ngrok-free.app/web-data', data)
+		await axios.post('http://localhost:8000/web-data', data)
 	}, [addedItems])
 
 	useEffect(() => {
@@ -93,9 +55,9 @@ const ProductList = () => {
 	}
 	return (
 		<div className='list'>
-			{products.map(item => (
+			{/* {products.map(item => (
 				<ProductItem product={item} onAdd={onAdd} className={'item'} />
-			))}
+			))} */}
 		</div>
 	)
 }
