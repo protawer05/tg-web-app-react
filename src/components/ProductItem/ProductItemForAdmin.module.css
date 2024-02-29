@@ -9,6 +9,14 @@
 	margin-right: 20px;
 	margin-bottom: 10px;
 }
+.remove_button {
+	background-color: #ffffff00;
+	width: 100%;
+	border: none;
+	text-align: right;
+	margin-bottom: -22px;
+	z-index: 3;
+}
 .img {
 	width: 100%;
 	background: lightgray;
@@ -19,7 +27,7 @@
 .description {
 	font-size: 0.8em;
 }
-.add-btn {
+.add_btn {
 	width: 90%;
 	margin: 0 auto;
 	border: none;
@@ -32,9 +40,9 @@
 	align-items: center;
 	justify-content: center;
 }
-.product-title {
+.product_title {
 	font-size: 15px;
 }
-.product-info {
+.product_info {
 	margin-left: 8px;
 }

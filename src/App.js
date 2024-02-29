@@ -1,9 +1,10 @@
-import './App.css'
 import { useEffect } from 'react'
-import { useTelegram } from './hooks/useTelegram'
-import Header from './components/Header/Header'
 import { Route, Routes } from 'react-router-dom'
+import './App.css'
+import Header from './components/Header/Header'
+import AdminPage from './components/Pages/AdminPage'
 import CatalogPage from './components/Pages/CatalogPage'
+import { useTelegram } from './hooks/useTelegram'
 
 function App() {
 	const { tg } = useTelegram()
@@ -16,6 +17,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route index element={<CatalogPage />} />
+				<Route path='/admin' element={<AdminPage />} />
 			</Routes>
 		</div>
 	)

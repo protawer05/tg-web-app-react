@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTelegram } from '../../hooks/useTelegram'
+import ProductItem from '../ProductItem/ProductItem'
+import ProductItemForAdmin from '../ProductItem/ProductItemForAdmin'
 import './ProductList.css'
 
 const getTotalPrice = items => {
@@ -9,13 +11,15 @@ const getTotalPrice = items => {
 	}, 0)
 }
 
-const ProductList = () => {
+const ProductList = ({ isAdmin }) => {
 	const [products, setProducts] = useState([])
 	const [addedItems, setAddedItems] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 	const { tg, queryId } = useTelegram()
 	useEffect(async () => {
 		const { data } = await axios.get('http://localhost:8000/products')
 		setProducts(data)
+		setIsLoading(false)
 	}, [])
 
 	const onSendData = useCallback(async () => {
@@ -53,13 +57,23 @@ const ProductList = () => {
 			})
 		}
 	}
-	return (
-		<div className='list'>
-			{/* {products.map(item => (
-				<ProductItem product={item} onAdd={onAdd} className={'item'} />
-			))} */}
-		</div>
-	)
+	const renderProducts = () => {
+		if (isAdmin === true) {
+			return products.map(item => (
+				<ProductItemForAdmin
+					product={item}
+					onAdd={onAdd}
+					key={item._id}
+					setProducts={setProducts}
+				/>
+			))
+		} else {
+			return products.map(item => (
+				<ProductItem product={item} onAdd={onAdd} key={item._id} />
+			))
+		}
+	}
+	return <div className='list'>{!isLoading ? renderProducts() : null}</div>
 }
 
 export default ProductList
