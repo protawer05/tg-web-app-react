@@ -3,7 +3,6 @@ import React from 'react'
 import s from './ProductItemForAdmin.module.css'
 const ProductItemForAdmin = ({ product, onAdd, setProducts }) => {
 	const onAddHandler = () => {
-		console.log(product)
 		onAdd(product)
 	}
 	const onClickRemoveButton = async id => {

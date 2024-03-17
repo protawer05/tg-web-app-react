@@ -12,7 +12,7 @@ const AdminPage = () => {
 				justifyContent: 'center',
 			}}
 		>
-			<AddProductButton />
+			<AddProductButton setProducts={setProducts} />
 			<ProductList
 				isAdmin={true}
 				products={products}

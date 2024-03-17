@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AddProductModal from '../addProductModal/AddProductModal'
 import s from './AddProductButton.module.css'
-const AddProductButton = () => {
+const AddProductButton = ({ setProducts }) => {
 	const [isShowModal, setIsShowModal] = useState(false)
 	return (
 		<>
@@ -21,7 +21,12 @@ const AddProductButton = () => {
 				/>
 				Добавить новый продукт
 			</button>
-			{isShowModal && <AddProductModal setIsShowModal={setIsShowModal} />}
+			{isShowModal && (
+				<AddProductModal
+					setIsShowModal={setIsShowModal}
+					setProducts={setProducts}
+				/>
+			)}
 		</>
 	)
 }

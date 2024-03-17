@@ -1,14 +1,15 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import s from './AddProductModal.module.css'
-const AddProductModal = ({ setIsShowModal }) => {
+const AddProductModal = ({ setIsShowModal, setProducts }) => {
 	const [newProduct, setNewProduct] = useState({})
 	const handleSubmit = async e => {
 		e.preventDefault()
-		await axios
-			.post('http://localhost:8000/products', newProduct)
-			.then(e => setNewProduct({}))
+		await axios.post('http://localhost:8000/products', newProduct)
+		setNewProduct({})
 		setIsShowModal(false)
+		const { data } = await axios.get('http://localhost:8000/products')
+		setProducts(data)
 	}
 	return (
 		<div>
