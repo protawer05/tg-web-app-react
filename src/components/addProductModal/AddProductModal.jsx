@@ -1,10 +1,14 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import s from './AddProductModal.module.css'
 const AddProductModal = ({ setIsShowModal }) => {
 	const [newProduct, setNewProduct] = useState({})
-	const handleSubmit = e => {
-		console.log(newProduct)
+	const handleSubmit = async e => {
 		e.preventDefault()
+		await axios
+			.post('http://localhost:8000/products', newProduct)
+			.then(e => setNewProduct({}))
+		setIsShowModal(false)
 	}
 	return (
 		<div>
@@ -16,17 +20,32 @@ const AddProductModal = ({ setIsShowModal }) => {
 					<div className=''>Название</div>
 					<input
 						type='text'
-						onChange={e => setNewProduct({ title: e.target.value })}
+						onChange={e =>
+							setNewProduct(product => ({
+								...product,
+								title: e.target.value,
+							}))
+						}
 					/>
 					<div className=''>Цена</div>
 					<input
 						type='text'
-						onChange={e => setNewProduct({ price: e.target.value })}
+						onChange={e =>
+							setNewProduct(product => ({
+								...product,
+								price: e.target.value,
+							}))
+						}
 					/>
 					<div className=''>Url картинки</div>
 					<input
 						type='text'
-						onChange={e => setNewProduct({ imageUrl: e.target.value })}
+						onChange={e =>
+							setNewProduct(product => ({
+								...product,
+								imageUrl: e.target.value,
+							}))
+						}
 					/>
 				</div>
 				<button type='submit'>Добавить</button>
