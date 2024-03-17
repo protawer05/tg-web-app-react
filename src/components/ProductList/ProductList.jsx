@@ -11,8 +11,7 @@ const getTotalPrice = items => {
 	}, 0)
 }
 
-const ProductList = ({ isAdmin }) => {
-	const [products, setProducts] = useState([])
+const ProductList = ({ isAdmin, products, setProducts }) => {
 	const [addedItems, setAddedItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const { tg, queryId } = useTelegram()
@@ -40,13 +39,14 @@ const ProductList = ({ isAdmin }) => {
 	}, [onSendData])
 
 	const onAdd = product => {
-		const alreadyAdded = addedItems.find(item => item.id === product.id)
+		const alreadyAdded = addedItems.find(item => item._id === product._id)
 		let newItems = []
 		if (alreadyAdded) {
-			newItems = addedItems.filter(item => item.id !== product.id)
+			newItems = addedItems.filter(item => item._id !== product._id)
 		} else {
 			newItems = [...addedItems, product]
 		}
+
 		setAddedItems(newItems)
 		if (newItems.length === 0) {
 			tg.MainButton.hide()

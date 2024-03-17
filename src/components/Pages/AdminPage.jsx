@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductList from '../ProductList/ProductList'
 import AddProductButton from '../addProductButton/AddProductButton'
-
 const AdminPage = () => {
+	const [products, setProducts] = useState([])
 	return (
 		<div
 			style={{
@@ -13,7 +13,11 @@ const AdminPage = () => {
 			}}
 		>
 			<AddProductButton />
-			<ProductList isAdmin={true} />
+			<ProductList
+				isAdmin={true}
+				products={products}
+				setProducts={setProducts}
+			/>
 		</div>
 	)
 }
