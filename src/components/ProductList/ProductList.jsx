@@ -1,10 +1,9 @@
-import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
+import useAxios from '../../hooks/useAxios'
 import { useTelegram } from '../../hooks/useTelegram'
 import ProductItem from '../ProductItem/ProductItem'
 import ProductItemForAdmin from '../ProductItem/ProductItemForAdmin'
 import './ProductList.css'
-
 const getTotalPrice = items => {
 	return items.reduce((acc, item) => {
 		return (acc += item.price)
@@ -12,11 +11,12 @@ const getTotalPrice = items => {
 }
 
 const ProductList = ({ isAdmin, products, setProducts }) => {
+	const { getProducts, postWebData } = useAxios()
 	const [addedItems, setAddedItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const { tg, queryId } = useTelegram()
 	useEffect(async () => {
-		const { data } = await axios.get('http://localhost:8000/products')
+		const data = await getProducts()
 		setProducts(data)
 		setIsLoading(false)
 	}, [])
@@ -28,7 +28,7 @@ const ProductList = ({ isAdmin, products, setProducts }) => {
 			queryId,
 		}
 		// axios.post('https://fly-deciding-ray.ngrok-free.app/web-data', data)
-		await axios.post('http://localhost:8000/web-data', data)
+		await postWebData(data)
 	}, [addedItems])
 
 	useEffect(() => {

@@ -1,18 +1,19 @@
-import axios from 'axios'
 import React, { useState } from 'react'
+import useAxios from '../../hooks/useAxios'
 import s from './AddProductModal.module.css'
 const AddProductModal = ({ setIsShowModal, setProducts }) => {
+	const { postProduct, getProducts } = useAxios()
 	const [newProduct, setNewProduct] = useState({})
 	const handleSubmit = async e => {
 		e.preventDefault()
-		await axios.post('http://localhost:8000/products', newProduct)
+		await postProduct(newProduct)
 		setNewProduct({})
 		setIsShowModal(false)
-		const { data } = await axios.get('http://localhost:8000/products')
+		const data = await getProducts()
 		setProducts(data)
 	}
 	return (
-		<div>
+		<div className={s.form_wrapper}>
 			<form onSubmit={handleSubmit} className={s.form}>
 				<button onClick={() => setIsShowModal(false)} className={s.closeButton}>
 					x
@@ -20,6 +21,7 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 				<div className={s.inputs_wrapper}>
 					<div className=''>Название</div>
 					<input
+						placeholder='Джинсы'
 						type='text'
 						onChange={e =>
 							setNewProduct(product => ({
@@ -30,6 +32,7 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 					/>
 					<div className=''>Цена</div>
 					<input
+						placeholder='5399'
 						type='text'
 						onChange={e =>
 							setNewProduct(product => ({
@@ -40,6 +43,7 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 					/>
 					<div className=''>Url картинки</div>
 					<input
+						placeholder='https://...'
 						type='text'
 						onChange={e =>
 							setNewProduct(product => ({
@@ -49,7 +53,9 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 						}
 					/>
 				</div>
-				<button type='submit'>Добавить</button>
+				<button type='submit' className={s.addProduct_button}>
+					Добавить
+				</button>
 			</form>
 		</div>
 	)

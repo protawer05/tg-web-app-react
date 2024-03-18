@@ -1,14 +1,41 @@
+.form_wrapper {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #000000a9;
+	z-index: 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .inputs_wrapper {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+.inputs_wrapper > div {
+	margin-bottom: 5px;
+}
+.inputs_wrapper > input {
+	height: 30px;
+	width: 250px;
+	font-size: 20px;
 }
 .form {
+	max-width: 300px;
 	border: 1px solid #fff;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 20px 20px 20px 20px;
 	position: relative;
-	padding-top: 15px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	z-index: 999;
 }
 .closeButton {
 	position: absolute;
@@ -18,4 +45,9 @@
 	border: none;
 	font-size: 20px;
 	color: #fff;
+}
+.addProduct_button {
+	border: 1px solid #000;
+	background: rgba(128, 128, 128, 0.353);
+	font-size: 24px;
 }

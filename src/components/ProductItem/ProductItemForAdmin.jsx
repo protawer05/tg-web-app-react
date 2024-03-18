@@ -1,14 +1,13 @@
-import axios from 'axios'
 import React from 'react'
+import useAxios from '../../hooks/useAxios'
 import s from './ProductItemForAdmin.module.css'
 const ProductItemForAdmin = ({ product, onAdd, setProducts }) => {
+	const { deleteProduct } = useAxios()
 	const onAddHandler = () => {
 		onAdd(product)
 	}
 	const onClickRemoveButton = async id => {
-		await axios
-			.delete(`http://localhost:8000/products/${id}`)
-			.then(() => alert('Вы удалил продукт'))
+		await deleteProduct(id).then(() => alert('Вы удалил продукт'))
 		setProducts(products => products.filter(product => product._id !== id))
 	}
 	return (
