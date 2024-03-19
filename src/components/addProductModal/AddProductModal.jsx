@@ -6,9 +6,9 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 	const [newProduct, setNewProduct] = useState({})
 	const handleSubmit = async e => {
 		e.preventDefault()
+		setIsShowModal(false)
 		await postProduct(newProduct)
 		setNewProduct({})
-		setIsShowModal(false)
 		const data = await getProducts()
 		setProducts(data)
 	}
