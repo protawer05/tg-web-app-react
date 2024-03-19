@@ -33,7 +33,7 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 					<div className=''>Цена</div>
 					<input
 						placeholder='5399'
-						type='text'
+						type='number'
 						onChange={e =>
 							setNewProduct(product => ({
 								...product,
@@ -44,7 +44,8 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 					<div className=''>Url картинки</div>
 					<input
 						placeholder='https://...'
-						type='text'
+						type='url'
+						pattern='https://.*'
 						onChange={e =>
 							setNewProduct(product => ({
 								...product,
