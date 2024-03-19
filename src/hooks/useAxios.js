@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = 'http://localhost:8000' // url backend
+const URL = 'https://fly-deciding-ray.ngrok-free.app' // url backend
 export default function useAxios() {
 	const getProducts = async () => {
 		const { data } = await axios.get(`${URL}/products`)
