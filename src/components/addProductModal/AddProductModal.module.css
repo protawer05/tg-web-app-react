@@ -5,7 +5,7 @@
 	top: 0;
 	left: 0;
 	background-color: #000000a9;
-	z-index: 3;
+	z-index: 2000;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -35,7 +35,7 @@
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
-	z-index: 999;
+	z-index: 3000;
 }
 .closeButton {
 	position: absolute;
