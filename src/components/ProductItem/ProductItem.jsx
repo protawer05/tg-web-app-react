@@ -1,13 +1,17 @@
 import React from 'react'
 import './ProductItem.css'
 
-const ProductItem = ({ product, className, onAdd }) => {
+const ProductItem = ({ product, className, onAdd, setShowProductModal }) => {
 	const onAddHandler = () => {
 		onAdd(product)
 	}
 	return (
 		<div className={'product' + ' ' + className}>
-			<img className='img' src={product.imageUrl} />
+			<img
+				className='img'
+				src={product.imageUrl}
+				onClick={() => setShowProductModal(product)}
+			/>
 			<div className='product-info'>
 				<h4 className='price'>{product.price} ₽</h4>
 				<div className='product-title'>{product.title}</div>
