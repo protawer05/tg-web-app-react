@@ -12,6 +12,9 @@
 	border: none;
 	background: none;
 }
+.button__close-app:hover {
+	cursor: pointer;
+}
 .main-title {
 	font-size: 21px;
 }

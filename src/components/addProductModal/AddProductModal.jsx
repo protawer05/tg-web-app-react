@@ -1,9 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useAxios from '../../hooks/useAxios'
 import s from './AddProductModal.module.css'
 const AddProductModal = ({ setIsShowModal, setProducts }) => {
 	const { postProduct, getProducts } = useAxios()
 	const [newProduct, setNewProduct] = useState({})
+	useEffect(() => {
+		document.addEventListener('keypress', listener)
+		return () => {
+			document.removeEventListener('keypress', listener)
+		}
+	}, [newProduct])
+	const listener = async e => {
+		if (e.key === 'Enter') {
+			setIsShowModal(false)
+			console.log(newProduct)
+			await postProduct(newProduct)
+			setNewProduct({})
+			const data = await getProducts()
+			setProducts(data)
+		}
+	}
 	const handleSubmit = async e => {
 		e.preventDefault()
 		setIsShowModal(false)
