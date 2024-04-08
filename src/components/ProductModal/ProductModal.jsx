@@ -4,7 +4,6 @@ const ProductModal = ({ product, setShowProductModal }) => {
 	const modalElement = useRef()
 	useEffect(() => {
 		const handleClick = e => {
-			console.log(e.target, modalElement.current)
 			if (modalElement.current == e.target) {
 				setShowProductModal(false)
 			}

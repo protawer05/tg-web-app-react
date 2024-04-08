@@ -7,7 +7,7 @@ import ProductModal from '../ProductModal/ProductModal'
 import './ProductList.css'
 const getTotalPrice = items => {
 	return items.reduce((acc, item) => {
-		return (acc += item.price)
+		return (acc += item.price * item.counter)
 	}, 0)
 }
 
@@ -39,13 +39,39 @@ const ProductList = ({ isAdmin, products, setProducts }) => {
 			tg.offEvent('mainButtonClicked', onSendData)
 		}
 	}, [onSendData])
-
+	const onRemoveProduct = productId => {
+		const newItems = addedItems
+			.map(obj => {
+				if (obj._id === productId) {
+					obj.counter -= 1
+				}
+				if (obj.counter !== 0) {
+					return obj
+				}
+			})
+			.filter(notUndefined => notUndefined !== undefined)
+		console.log(newItems, addedItems)
+		setAddedItems(newItems)
+		if (newItems.length === 0) {
+			tg.MainButton.hide()
+		} else {
+			tg.MainButton.setParams({
+				text: `Купить ${getTotalPrice(newItems)}₽`,
+			})
+		}
+	}
 	const onAdd = product => {
 		const alreadyAdded = addedItems.find(item => item._id === product._id)
 		let newItems = []
 		if (alreadyAdded) {
-			newItems = addedItems.filter(item => item._id !== product._id)
+			newItems = addedItems.map(obj => {
+				if (obj._id === product._id) {
+					obj.counter += 1
+				}
+				return obj
+			})
 		} else {
+			product.counter = 1
 			newItems = [...addedItems, product]
 		}
 
@@ -55,7 +81,7 @@ const ProductList = ({ isAdmin, products, setProducts }) => {
 		} else {
 			tg.MainButton.show()
 			tg.MainButton.setParams({
-				text: `Купить ${getTotalPrice(newItems)}$`,
+				text: `Купить ${getTotalPrice(newItems)}₽`,
 			})
 		}
 	}
@@ -67,12 +93,15 @@ const ProductList = ({ isAdmin, products, setProducts }) => {
 					onAdd={onAdd}
 					key={item._id}
 					setProducts={setProducts}
+					setShowProductModal={setShowProductModal}
+					onRemoveProduct={onRemoveProduct}
 				/>
 			))
 		} else {
 			return products.map(item => (
 				<ProductItem
 					product={item}
+					onRemoveProduct={onRemoveProduct}
 					onAdd={onAdd}
 					key={item._id}
 					setShowProductModal={setShowProductModal}

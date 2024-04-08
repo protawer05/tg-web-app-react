@@ -65,7 +65,10 @@ const AddProductModal = ({ setIsShowModal, setProducts }) => {
 						onChange={e =>
 							setNewProduct(product => ({
 								...product,
-								imageUrl: e.target.value,
+								imageUrl:
+									e.target.value === ''
+										? 'https://trial-sport.ru/images/catalog/miv9214_8541_c3h_0_2865452.jpg'
+										: e.target.value,
 							}))
 						}
 					/>
