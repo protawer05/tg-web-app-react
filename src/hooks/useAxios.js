@@ -1,6 +1,6 @@
 import axios from 'axios'
-// const URL = 'https://fly-deciding-ray.ngrok-free.app' // url backend
-const URL = 'http://localhost:8000'
+const URL = 'https://fly-deciding-ray.ngrok-free.app' // url backend
+// const URL = 'http://localhost:8000'
 export default function useAxios() {
 	const instance = axios.create({
 		baseURL: URL,
